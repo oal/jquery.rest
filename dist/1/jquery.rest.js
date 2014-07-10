@@ -62,6 +62,7 @@ deleteWarning = function() {
 defaultOpts = {
   url: '',
   cache: 0,
+  csrf: '',
   request: function(resource, options) {
     return $.ajax(options);
   },
@@ -349,6 +350,9 @@ Resource = (function() {
     if (this.opts.methodOverride && (method !== 'GET' && method !== 'HEAD' && method !== 'POST')) {
       headers['X-HTTP-Method-Override'] = method;
       method = 'POST';
+    }
+    if (this.opts.csrf) {
+      headers['X-CSRFToken'] = this.opts.csrf;
     }
     if (this.opts.stripTrailingSlash) {
       url = url.replace(/\/$/, "");

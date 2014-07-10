@@ -35,6 +35,7 @@ deleteWarning = ->
 defaultOpts =
   url: ''
   cache: 0
+  csrf: ''
   request: (resource, options) -> $.ajax(options)
   isSingle: false
   autoClearCache: true
@@ -112,7 +113,6 @@ class Verb
 
 #resource class - represents one set of crud ops
 class Resource
-
   constructor: (nameOrUrl, options = {}, parent) ->
     validateOpts options
     if parent and parent instanceof Resource
@@ -235,6 +235,9 @@ class Resource
     if @opts.methodOverride and method not in ['GET', 'HEAD', 'POST']
       headers['X-HTTP-Method-Override'] = method
       method = 'POST'
+
+    if @opts.csrf
+      headers['X-CSRFToken'] = @opts.csrf
 
     if @opts.stripTrailingSlash
       url = url.replace /\/$/, ""

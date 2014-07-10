@@ -406,6 +406,10 @@ See defaults [here](https://github.com/jpillora/jquery.rest/blob/gh-pages/src/jq
 
 A number reprenting the number of seconds to used previously cached requests. When set to `0`, no requests are stored.
 
+#### csrf
+
+Sets a CSRF token that will be sent with every request via the X-CSRFToken header.
+
 ### cachableTypes
 
 An array of strings reprenting the HTTP method types that can be cached. Is `["GET"]` by default.
@@ -486,7 +490,6 @@ Since each Resource can have it's own set of options, at instantiation time, opt
 
 Todo
 ---
-* CSRF
 * Add Tests
 
 Contributing
